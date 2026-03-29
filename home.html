@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home — Vibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="form-card">
+      <h1 id="welcome">Home</h1>
+      <p class="lead" id="subtitle">Loading your profile…</p>
+
+      <div id="profile" class="hidden">
+        <p><strong id="name"></strong></p>
+        <p id="email"></p>
+        <p id="username"></p>
+        <p id="meta"></p>
+        <button id="logout" class="btn">Log out</button>
+      </div>
+
+      <div id="not-auth" class="hidden">
+        <p>You are not signed in. <a href="login.html">Sign in</a></p>
+      </div>
+    </section>
+  </main>
+
+<script>
+(function(){
+  const API_BASE = typeof API_BASE !== 'undefined' ? API_BASE : '';
+  const FRONTEND_BASE = typeof FRONTEND_BASE !== 'undefined' ? FRONTEND_BASE : '';
+  const token = localStorage.getItem('vibe_token');
+  const profile = document.getElementById('profile');
+  const notAuth = document.getElementById('not-auth');
+  const subtitle = document.getElementById('subtitle');
+
+  function toLogin(){
+    const loginUrl = FRONTEND_BASE ? `${FRONTEND_BASE}/login.html` : 'login.html';
+    window.location.href = loginUrl;
+  }
+
+  if(!token){
+    subtitle.textContent = 'Not signed in.';
+    notAuth.classList.remove('hidden');
+    setTimeout(toLogin, 900);
+    return;
+  }
+
+  fetch(`${API_BASE}/api/me`, { headers: { Authorization: `Bearer ${token}` } })
+    .then(r => r.json().then(j => ({ok: r.ok, body: j})))
+    .then(({ok, body}) => {
+      if(!ok){
+        subtitle.textContent = 'Session invalid. Redirecting to login…';
+        localStorage.removeItem('vibe_token');
+        setTimeout(toLogin, 900);
+        return;
+      }
+      const u = body.user;
+      document.getElementById('name').textContent = u.full_name || '';
+      document.getElementById('email').textContent = `Email: ${u.email || ''}`;
+      document.getElementById('username').textContent = `Username: ${u.username || ''}`;
+      document.getElementById('meta').textContent = `Joined: ${u.created_at || ''}`;
+      subtitle.classList.add('hidden');
+      profile.classList.remove('hidden');
+    }).catch(err => {
+      subtitle.textContent = 'Network error. Redirecting to login…';
+      console.error(err);
+      setTimeout(toLogin, 900);
+    });
+
+  document.getElementById('logout').addEventListener('click', ()=>{
+    localStorage.removeItem('vibe_token');
+    toLogin();
+  });
+})();
+</script>
+</body>
+</html>

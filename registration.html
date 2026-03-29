@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register — Vibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="form-card" aria-labelledby="register-heading">
+      <h1 id="register-heading">Create your account</h1>
+      <p class="lead">Join Vibe — enter your details to get started.</p>
+  <div id="global-msg" class="global-msg hidden" role="status" aria-live="polite"></div>
+
+      <form id="register-form" novalidate>
+        <div class="field-group">
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" required autocomplete="name" placeholder="Jane Doe">
+          <small class="error" data-for="fullName"></small>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+            <small class="error" data-for="email"></small>
+          </div>
+
+          <div class="field-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" required autocomplete="username" placeholder="janedoe">
+            <small class="error" data-for="username"></small>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" required autocomplete="new-password" placeholder="Choose a strong password">
+              <button type="button" id="togglePassword" aria-label="Show password">👁️</button>
+            </div>
+            <meter id="pw-strength" min="0" max="4" value="0"></meter>
+            <small class="pw-hint">Use at least 8 characters, mix of letters, numbers and symbols.</small>
+            <small class="error" data-for="password"></small>
+          </div>
+
+          <div class="field-group">
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" required autocomplete="new-password" placeholder="Re-type your password">
+            <small class="error" data-for="confirmPassword"></small>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="dob">Date of birth</label>
+            <input id="dob" name="dob" type="date" required>
+            <small class="error" data-for="dob"></small>
+          </div>
+
+          <div class="field-group">
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+              <option value="">Select...</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Other</option>
+            </select>
+            <small class="error" data-for="country"></small>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <label class="checkbox">
+            <input id="terms" name="terms" type="checkbox" required>
+            <span>I agree to the <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</span>
+          </label>
+          <small class="error" data-for="terms"></small>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn primary">Create account</button>
+      </form>
+
+      <div id="success" class="success hidden" role="status" aria-live="polite">
+        <h2>Registration complete</h2>
+        <p>Your account has been created (locally). You can enhance this by wiring a server endpoint.</p>
+        <button id="createAnother" class="btn">Create another</button>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

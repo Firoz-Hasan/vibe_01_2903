@@ -1,0 +1,16 @@
+# Ignore local node_modules (macOS binaries) so container builds use Linux modules
+node_modules
+**/node_modules
+
+# Ignore environment files
+.env
+backend/.env
+
+# Misc
+.git
+.gitignore
+.DS_Store
+npm-debug.log
+backend_logs.txt
+compose_ps.txt
+*.log

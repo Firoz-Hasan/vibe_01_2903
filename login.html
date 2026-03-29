@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login — Vibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="form-card">
+      <h1>Welcome back</h1>
+      <p class="lead">Sign in to your Vibe account.</p>
+
+  <div id="global-msg" class="global-msg hidden" role="status" aria-live="polite"></div>
+
+      <form id="login-form">
+        <div class="field-group">
+          <label for="identifier">Email or username</label>
+          <input id="identifier" name="identifier" type="text" required placeholder="you@company.com or username">
+          <small class="error" data-for="identifier"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="Your password">
+          <small class="error" data-for="password"></small>
+        </div>
+
+        <button type="submit" class="btn primary">Sign in</button>
+      </form>
+
+      <div id="login-success" class="success hidden" role="status" aria-live="polite">
+        <h2>Signed in</h2>
+        <p>You are signed in. Token stored in localStorage as <code>vibe_token</code>.</p>
+      </div>
+    </section>
+  </main>
+  <script src="login_script.js"></script>
+</body>
+</html>
