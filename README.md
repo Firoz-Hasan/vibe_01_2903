@@ -61,3 +61,14 @@ This starts Postgres (with migration applied) and the backend at http://localhos
 Notes:
 - The docker-compose uses a simple DB user/password (vibe/vibe_pass) and creates `vibe_db`.
 - Change `JWT_SECRET` in `docker-compose.yml` or set env vars as appropriate.
+
+Screenshots
+-----------
+
+Registration page (live at http://localhost:3000/registration.html):
+
+![Registration](/assets/screenshots/registration.png)
+
+Login page (live at http://localhost:3000/login.html):
+
+![Login](/assets/screenshots/login.png)
