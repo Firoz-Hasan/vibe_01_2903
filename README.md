@@ -19,17 +19,11 @@ Notes and next steps you might want
 - Add server-side validation and user uniqueness checks.
 - Add tests (unit tests for validation) if you plan to integrate into a larger app.
 
-If you want, I can:
-- Add a minimal Express server with a /register route and simple in-memory store.
-- Convert this into a React/Vue component and add tests.
-- Add ARIA improvements and keyboard-only flow tests.
-
-Tell me which direction you want next and I'll implement it.
 
 Backend and Docker
 ------------------
 
-I added a minimal Express backend under `backend/` with endpoints:
+Added a minimal Express backend under `backend/` with endpoints:
 - POST /api/register
 - POST /api/login
 - GET /api/me
